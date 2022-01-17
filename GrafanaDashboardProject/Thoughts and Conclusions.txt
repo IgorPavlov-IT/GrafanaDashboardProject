@@ -1,0 +1,68 @@
+Thoughts & Conclusions through-out the Grafana Project:
+
+
+* Task: (JAVA) Code to read and interpret JSON data and put it into output
+	- Currently have coded out 2 of the 3 methods I thought of to complete task.
+	- Since current task (in my understanding) essentially is a request for certain DATA and sorting that data, GET function will suffice.
+	- 1st and 2nd method are mostly around "GET" functionality. 3rd method allows for "POST" "GET" "DELETE" ect. 
+	- Choice of methods is as follows, first method is longer and more basic; and therefore more beginner friendly/easier to read/understand.
+	  Additionally it is based on functionality of a older JDK version (Java Developement Kit).
+	- 2nd (functioning but commented out) method is very clean and advanced functionality added with a more recent JDK version. 
+
+
+* Input can be CLI, API or UI. (Even though GitHub has also it's own CLI, I assume the (console) within IDE-s 
+	- CLI = Command Line Interface (console) even though usually refers to code-sharing platforms, such as Dockers or Bithubs or Buckets ect (I think)?
+	  IntelliJ or Eclipse (or most other IDE-s) also have a console built-in into them that they (I think?) call CLI?, however in this context I think API applies to them more accurately. 
+	  So from my understanding I can use IDE console for input, which allows to change input simply & quickly if an error occurs. 
+	- Alternatively could use a simple file.txt for input, but that seems more of a hassle for about 10-character input.
+	- Need to write error handling logic: a loop/cycle to handle 1) Successful quiery 2) Unsuccessful + try again 3) Exit 
+	- Currently program assumes that user knows what to enter and that only reason for unsuccessful query is a mistake or typo, currently there is no safety net against wrong user input. 
+	
+* Attempted to get uid (unique ID) for "any" dashboard(s) from grafana.com 
+---This point is creating a lot of headache for me ---
+	- Failed to find a solution to do so. Reading the Docs didn't give me any confidence. 
+	- [Idea 1]Either I need to download/use Postman, to POST/Create a dashboard to then "use" for testing or create Grafana acc/download it to get a session ID?
+	- [Idea 2]From my reading of the documents, I feel that I may need to install/run Grafana and set up some dashboards in localhost for testing?
+	  This contradicts what answers I got from Pipedrive on how this challenge "should" be handled. I should be able to get and test everything
+	  against Grafana site ... Correction: Grafana.com and play.Grafana.org are 2 separate sites with different functionality. 
+		- Confusion was caused, because I happened to find "https://grafana.com/api/deashboards/2" - which looks to be a Prometheus Dashboard bundle for Grafana.
+		- Whereas when I tried to use example from DOCs "https://play.grafana.org/api/dashboards/uid/cIBgcSjkk" I got "Dashboard not found" message.
+	- [Problem 1] Since I currently don't exactly know or understand how Grafana works, I will proceed for now and return to this step (when testing) to see if I can resolve this.
+		- For example Authentication with Api Keys, if it is required for this task, then I might not currently have a solution how to attain these
+		  tokens through HTTP Api or the code. This would (I think?) require to  login to Grafana on the machine that will be doing the testing? 
+
+* System.out.println not suitable as output, changed to print to file: output.txt
+	- By default every further attempt and query will overwrite said file. 
+	- Location of file will be in project folder.
+	- [Idea 3] Perhaps I can make a file-name cycle/loop, so that the last 3 (or 5?) requests are handled and stored. 
+
+* Write to output specified lines. 
+	- Without a sample output, it will be more challenging to figure out how to separate the lines or data I need. 
+	- [Idea 4] I could attempt to use the "Prometheus Stats" Dashboard to get the "keywords" & structure for lines I need.
+		Update: It seems very unlikely that Prometheus Stats Dashboard on Grafana.com has same layout/structure like play.grafana.org dashboards.
+		That conclusion was made by searching some of the keywords from the task Output example. 		
+	- I see two possible approaches:
+	  1) I store the whole Dashboard data in JSON format in a temporary.txt and I use a lookup/search function to find the specific things I need. 
+	  2) I specify which data I need and only store that.
+	- 1st Method slightly more space consuming, but I think it should be relatively simple to trim down and cut off unnecessary bits in a bigger JSON.
+	- 2nd Method would be more "clean" but assembling a "complete/correct" JSON from bits & pieces of data could become an issue as well as solving bonus objective. 
+	- [Small Problem 1] Having an output loop/cycle, might severely complicate how the JSON can be handled/processed. Might have to shelf this idea.
+
+* Providing solution on Github with launch instructions.
+	- Upon asking further details, the suggestion/request was to use CLI (command-line interface) commands.
+	- [Problem 2]I have seen it be used and I know some developers "prefer" this approach, I don't currently know how to exactly do it myself, yet.
+	- Currently leaning towards making a simple README with the approach to install an IDE, since we will be using it as an input method.  
+
+* Creating instructions/thoughts/conclusion logging
+	- I will make instructions/manual README at the  very end once everything is ready. 
+	- Thoughts and "progress log" is being made now including past completed tasks and challenges.
+	- Thoughts are categorized in according to the order of completion (and/or importance) as well as labeled when something is an idea or a problem. 
+	- The more I think of the task and required steps the more unsure I am if I understood everything that is required correctly. 
+
+* Changing output according to datasources mapped to panels. 
+	- I for the most part have been writing the code in what I could call blind-mode, which means I haven't really had an uid to test on. 
+	  This caused me to make certain assumptions as well as having to make the code more fool-proof. Attempting to map datasources without seeing 
+	  the structure might require some unorthodox solutions. Which may or may not even work. 
+
+* Run the solution in container (i.e Docker?) 
+	- I haven't had opportuinity to learn or to use Docker yet, so I will probably not be able to do it within reasonable amount of time.
